@@ -157,10 +157,12 @@ public:                 ////////////////////////////////////////////
 ////////////////
               //
 class Shape   //
-{             //////////////////////
-public:                           //////////////////
+{             ////////
+public:             ////////////////
+    int _material;                //////////////////
     std::vector<Point> _points;                   //
     std::vector<std::vector<int>> _connections;   //
+    std::vector<std::vector<int>> _triangles;     //
 public:                                           //////////////
     Shape() {}                                                //
     void addPoint(const Point &p) { _points.push_back(p); }   //
@@ -171,6 +173,13 @@ public:                                           //////////////
     void addConnection(int from, int to) {                                  //
         _connections[from].push_back(to);   //////////////////////////////////
     }                                         //
+    void addTriangle(int a, int b, int c) {   //
+        std::vector<int> v;                   //
+        v.push_back(a);           //////////////
+        v.push_back(b);   //////////
+        v.push_back(c);           //
+        _triangles.push_back(v);  //
+    }                             //////////////
 private:                                      //////////////
     void drawXY(float x, float y, float z) {              //
         glVertex3f(x*0.4+0.05, y*0.4+0.55, z*0.4+0.05);   //
@@ -362,7 +371,7 @@ public:                         //
         _file >> n;                   //
         for(int i = 0; i < n; i++) {  //
             float x, y, z;            //
-            _file >> x >> y >> z;     //
+            _file >> x >> y;     //
             shape.addPoint(x, y, z);  //
         }                             //
         //number of connections       //
