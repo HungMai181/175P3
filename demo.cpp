@@ -371,7 +371,7 @@ public:                         //
         _file >> n;                   //
         for(int i = 0; i < n; i++) {  //
             float x, y, z;            //
-            _file >> x >> y;     //
+            _file >> x >> y;          //
             shape.addPoint(x, y, z);  //
         }                             //
         //number of connections       //
